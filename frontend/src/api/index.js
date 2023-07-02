@@ -1,12 +1,15 @@
 import express from "express";
+import http from "http";
+import { Server } from "socket.io";
+import dotenv from "dotenv"
+
+dotenv.config()
+
 const app = express();
-
-app.get("/api", (req, res) => {
-  res.send("hello world");
+const socket = new Server(http.createServer(), {
+	cors: {
+		origin: "http://localhost:3000"
+	}
 });
 
-app.get("/api/test", (req, res) => {
-  res.send("hello foo bar is here");
-});
-
-app.listen(8000, () => console.log("listening on port 8000"));
+socket.listen(8000)
