@@ -1,9 +1,7 @@
 import React, { useState } from 'react'
 import {v4 as uuIdv4} from 'uuid'
 
-const IdAndDisplayName = ({setIsDisabled}) => {
-    const [ID, setID] = useState('')
-    const [displayName, setDisplayName] = useState('')
+const IdAndDisplayName = ({setIsDisabled, setID, myID, displayName, setDisplayName}) => {
     const [friendID, setFriendID] = useState('')
 
     const generateID = () => {
@@ -16,11 +14,9 @@ const IdAndDisplayName = ({setIsDisabled}) => {
         if ((displayName === '') && (friendID === '')) {
             alert('Please enter value')
         } else {
-
             setFriendID('')
-            setDisplayName('')
             console.log(displayName, friendID)
-            setIsDisabled(prev => (!prev));
+            setIsDisabled(false);
         }
     }
   return (
@@ -39,7 +35,7 @@ const IdAndDisplayName = ({setIsDisabled}) => {
               <div className="generate_id_button">
                   <button type='submit' onClick={generateID}>Generate ID</button>
               </div>
-              <p>Your Chat id: {ID}</p>
+              <p>Your Chat id: {myID}</p>
               <div id="join_chat">
                   <p>Enter your friend's ID:</p>
                   <input
