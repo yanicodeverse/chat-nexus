@@ -1,15 +1,13 @@
-import express from "express";
 import http from "http";
 import { Server } from "socket.io";
-import dotenv from "dotenv"
+import dotenv from "dotenv";
 
-dotenv.config()
+dotenv.config();
 
-const app = express();
 const socket = new Server(http.createServer(), {
 	cors: {
-		origin: "http://localhost:3000"
-	}
+		origin: `${process.env.CLIENT_URL}:${process.env.CLIENT_PORT}`,
+	},
 });
 
-socket.listen(8000)
+socket.listen(process.env.API_PORT);
