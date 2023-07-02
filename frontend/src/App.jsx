@@ -1,33 +1,42 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
-
+  const [message, setMessage] = useState('')
+  const [data, setData] = useState('')
+  
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    setData(message)
+    setMessage('')
+    
+    // console.log(message);
+  }
+  
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+      <div className="container">
+        <div id="msg_output_container">
+          {data}
+        </div>
+        <div id="msg_control">
+            <form action="" onSubmit={handleSubmit}>
+              <textarea
+                name="msg"
+                id="msg"
+                value={message}
+                cols="55"
+                rows="2"
+                placeholder='type any msg...'
+                onChange={(e) => setMessage(e.target.value)}
+              />                  
+            <div id="send_button_container">
+               <button type='submit'>send</button>
+            </div>
+            </form>
+        </div>
+          
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </>
   )
 }
