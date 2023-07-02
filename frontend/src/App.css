@@ -1,98 +1,98 @@
 #root {
-  height: 100vh;
-  width: 100%;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
+	height: 100vh;
+	width: 100%;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
 }
 
 body {
-  margin: 0;
-  padding: 0;
+	margin: 0;
+	padding: 0;
 }
 
 #Id_And_Display_Name_container {
-  height: 50vh;
-  width: 30%;
-  border: 1px solid violet;
+	height: 50vh;
+	width: 30%;
+	border: 1px solid violet;
 }
 
-#Id_And_Display_Name_container>h3 {
-  text-align: center;
-  font-size: 2rem;
-  margin-top: 2px;
+#Id_And_Display_Name_container > h3 {
+	text-align: center;
+	font-size: 2rem;
+	margin-top: 2px;
 }
 
-#Id_And_Display_Name_container>form {
-  padding: 0 20px;
+#Id_And_Display_Name_container > form {
+	padding: 0 20px;
 }
 
-#Id_And_Display_Name_container>form>p {
-  font-size: 1.5rem;
-  margin: 0;
-  padding: 10px 0;
+#Id_And_Display_Name_container > form > p {
+	font-size: 1.5rem;
+	margin: 0;
+	padding: 10px 0;
 }
 
-#Id_And_Display_Name_container>form>.generate_id_button {
-  margin: 20px 0;
+#Id_And_Display_Name_container > form > .generate_id_button {
+	margin: 20px 0;
 }
 
-#Id_And_Display_Name_container>form>.generate_id_button>button {
-  cursor: pointer;
+#Id_And_Display_Name_container > form > .generate_id_button > button {
+	cursor: pointer;
 }
 
-#Id_And_Display_Name_container>form>#join_chat>p {
-  font-size: 1.5rem;
-  margin: 0;
-  padding: 10px 0;
+#Id_And_Display_Name_container > form > #join_chat > p {
+	font-size: 1.5rem;
+	margin: 0;
+	padding: 10px 0;
 }
 
-#Id_And_Display_Name_container>form>#join_chat>#join_chat_button {
-  margin: 20px 0;
+#Id_And_Display_Name_container > form > #join_chat > #join_chat_button {
+	margin: 20px 0;
 }
 
 .container {
-  height: 90vh;
-  width: 60%;
-  border: 1px solid rebeccapurple;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+	height: 90vh;
+	width: 60%;
+	border: 1px solid rebeccapurple;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
 }
 
 #msg_output_container {
-  height: 90%;
-  width: 100%;
-  border: 1px solid red;
-  font-size: 1.2rem;
-
-
+	height: 90%;
+	width: 100%;
+	border: 1px solid red;
+	font-size: 1.2rem;
 }
 
 #msg_control {
-  height: 9%;
-  width: 100%;
-  /* border: 1px solid saddlebrown; */
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+	height: 9%;
+	width: 100%;
+	/* border: 1px solid saddlebrown; */
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
 }
 
-#msg_control>form {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
+#msg_control > form {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: 100%;
+	gap: 1rem;
+	padding: 1rem;
 }
 
-
-#send_button_container>button {
-  padding: 5px 20px;
-  font-size: 1.6rem;
-  cursor: pointer;
+#send_button_container > button {
+	padding: 5px 20px;
+	font-size: 1.6rem;
+	cursor: pointer;
 }
 
-#msg_control>form>textarea {
-  resize: none;
-  font-size: 1.2rem;
+#msg_control > form > textarea {
+	resize: none;
+	font-size: 1.2rem;
+	width: 100%;
 }
