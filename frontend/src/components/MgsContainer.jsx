@@ -1,16 +1,7 @@
 import React, { useState } from "react";
 
-const MgsContainer = ({ disabled }) => {
-	const [message, setMessage] = useState("");
-	const [data, setData] = useState("");
+const MgsContainer = ({ disabled, handleSubmit, message, data, setMessage}) => {
 
-	const handleSubmit = (e) => {
-		e.preventDefault();
-		setData(message);
-		setMessage("");
-
-		// console.log(disabled);
-	};
 	return (
 		<div className="container">
 			<div id="msg_output_container">{data}</div>
