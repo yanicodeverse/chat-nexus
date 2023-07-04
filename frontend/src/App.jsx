@@ -1,51 +1,26 @@
-import { useState, useEffect } from "react";
-import { MgsContainer, IdAndDisplayName } from "./exports/export.js";
-import "./App.css";
-import { io } from "socket.io-client";
-
+import RoomVerification from "./components/RoomVerification.jsx";
+import RoomSetting from "./components/RoomSetting.jsx";
+import {
+	context as socket,
+	contextProps,
+} from "./custom-hooks/socket-reducer.js";
+import { useState } from "react";
+import useLocalStorage from "./custom-hooks/useLocalStorage.js";
+import { Container } from "react-bootstrap";
+import Conversation from "./components/Conversation.jsx";
 function App() {
-	const [disabled, setIsDisabled] = useState(true);
-	const [myID, setID] = useState("");
-	const [displayName, setDisplayName] = useState("");
-	const [message, setMessage] = useState("");
-	const [connection, setConnection] = useState(null);
-	const [data, setData] = useState("");
+	const [id, setID] = useLocalStorage("id");
 
-	useEffect(() => {
-		const socket = io("ws://localhost:8000");
-		setConnection(socket);
-		socket.on("reply", text => {
-			setMessage(text)
-		})
-		return () => socket.close();
-	}, []);
-
-	const handleSubmit = (e) => {
-		e.preventDefault();
-		setData(message);
-		if (connection) {
-			const formData = new FormData(e.target);
-			connection.emit("message", formData.get("msg"));
-		}
-		setMessage("");
-	};
 	return (
-		<>
-			<MgsContainer
-				disabled={disabled}
-				handleSubmit={handleSubmit}
-				message={message}
-				setMessage={setMessage}
-				data={data}
-			/>
-			<IdAndDisplayName
-				setIsDisabled={setIsDisabled}
-				setID={setID}
-				myID={myID}
-				displayName={displayName}
-				setDisplayName={setDisplayName}
-			/>
-		</>
+		<Container className="d-flex gap-4 p-3">
+			<div className="flex-grow-1 flex-shrink-0">
+				<RoomSetting id={id} />
+			</div>
+			<div>
+			<RoomVerification setID={setID} />
+			<Conversation />
+			</div>
+		</Container>
 	);
 }
 
