@@ -18,8 +18,7 @@ function App() {
 			</div>
 			<div>
 			<RoomVerification setID={setID} />
-			<Conversation />
-			
+			<Conversation />			
 			</div>
 		</Container>
 	);
