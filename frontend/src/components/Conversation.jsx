@@ -4,30 +4,6 @@ import {ListGroup, Card} from 'react-bootstrap'
 
 export default function Conversation() {
   // const {contacts} = useContact()
-
-  const contacts = [
-    {
-        "id": "6eec0f5c-1fbe-4f79-8b51-99ec94470534",
-        "name": "yani",
-        "isActive": true
-    },
-    
-    {
-        "id": "7d2ed4ea-ffbe-43a9-8e46-e5dddc68b406",
-        "name": "justina",
-        "isActive": false
-    },
-    {
-        "id": "6eec0f5c-1fbe-4f79-8b51-99ec94470534",
-        "name": "rakshak",
-        "isActive": true
-    },
-    {
-        "id": "7d2ed4ea-ffbe-43a9-8e46-e5dddc68b406",
-        "name": "sam",
-        "isActive": false
-    }
-]
   return (
     <>
       <Card className='mt-3 p-2'>
