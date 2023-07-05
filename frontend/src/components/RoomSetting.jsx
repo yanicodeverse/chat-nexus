@@ -30,8 +30,8 @@ const RoomSetting = ({ id }) => {
 					className="overflow-auto flex-grow-1"
 					style={{
 						borderRight: "1px solid var(--bs-gray-200)",
-						borderBottom: "1px solid var(--bs-gray-200",
-						borderLeft: "1px solid var(--bs-gray-200",
+						borderBottom: "1px solid var(--bs-gray-200)",
+						borderLeft: "1px solid var(--bs-gray-200)",
 					}}
 				>
 					<Tab.Pane eventKey={CONTACT_KEY}>
