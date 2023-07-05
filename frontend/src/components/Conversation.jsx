@@ -3,7 +3,7 @@ import { useContact } from './context/ContactsProvider'
 import {ListGroup, Card} from 'react-bootstrap'
 
 export default function Conversation() {
-  // const {contacts} = useContact()
+  // TODO: implement activeContectProvider.
   return (
     <>
       <Card className='mt-3 p-2'>
