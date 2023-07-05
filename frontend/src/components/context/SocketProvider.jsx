@@ -11,9 +11,9 @@ export default function SocketProvider({ id, children }) {
 	const [socket, setSocket] = useState(null);
 
 	useEffect(() => {
-		const newSocket = io(process.env.API_URL, { query: { id } });
+		const newSocket = io("http://localhost:8000", { query: { id } });
 		setSocket(newSocket);
-		return newSocket.close();
+		return () => newSocket.close();
 	}, [id]);
 	return (
 		<SocketContext.Provider value={socket}>{children}</SocketContext.Provider>
