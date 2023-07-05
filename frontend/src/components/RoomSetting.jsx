@@ -4,9 +4,11 @@ import ChatRoom from "./ChatRoom";
 import Contact from "./Contact";
 import NewContactModal from "./NewContactModal";
 import NewConversationModal from "./NewConversationModal";
+import Conversations from "./Conversations";
 
 const CONTACT_KEY = "contact";
 const CHAT_ROOM_KEY = "chat-room";
+const CONVERSATION_KEY = "conversations"
 
 const RoomSetting = ({ id }) => {
 	const [activeKey, setActiveKey] = useState(CONTACT_KEY);
@@ -25,6 +27,9 @@ const RoomSetting = ({ id }) => {
 					<Nav.Item>
 						<Nav.Link eventKey={CHAT_ROOM_KEY}>Chat Room</Nav.Link>
 					</Nav.Item>
+					<Nav.Item>
+						<Nav.Link eventKey={CONVERSATION_KEY}>Conversations</Nav.Link>
+					</Nav.Item>
 				</Nav>
 				<Tab.Content
 					className="overflow-auto flex-grow-1"
@@ -40,14 +45,17 @@ const RoomSetting = ({ id }) => {
 					<Tab.Pane eventKey={CHAT_ROOM_KEY}>
 						<ChatRoom />
 					</Tab.Pane>
+					<Tab.Pane eventKey={CONVERSATION_KEY}>
+						<Conversations />
+					</Tab.Pane>
 				</Tab.Content>
 				<div className="text-muted p-2" style={{ fontSize: ".8rem" }}>
 					Your id is: {id}
 				</div>
-				<Button onClick={() => setModalOpen(true)}>New {conversationOpen ? CONTACT_KEY : "Conversation"}</Button>
+				<Button onClick={() => setModalOpen(true)}>New {conversationOpen ? CONTACT_KEY :  "Conversation"}</Button>
 			</Tab.Container>
 			<Modal show={modalOpen} onHide={closeModal}>
-			{conversationOpen ?
+			{(conversationOpen) ?
 				<NewContactModal closeModal={closeModal}/>: <NewConversationModal closeModal={closeModal}/>}
 			</Modal>
 		</div>
