@@ -6,6 +6,7 @@ import Conversation from "./components/Conversation.jsx";
 import ContactsProvider from "./components/context/ContactsProvider.jsx";
 import ConversationProvider from "./components/context/ConversationProvider.jsx";
 import SocketProvider from "./components/context/SocketProvider.jsx";
+import ActiveContactProvider from "./components/context/ActiveContactProvider.jsx";
 function App() {
 	const [id, setID] = useLocalStorage("id");
 
@@ -19,7 +20,9 @@ function App() {
 						</div>
 						<div>
 							<RoomVerification setID={setID} />
-							<Conversation />
+							<ActiveContactProvider>
+								<Conversation />
+							</ActiveContactProvider>
 						</div>
 					</Container>
 				</ConversationProvider>
