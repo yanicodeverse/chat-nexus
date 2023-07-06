@@ -4,10 +4,12 @@ import {ListGroup, Card} from 'react-bootstrap'
 
 export default function Conversation() {
   // TODO: implement activeContectProvider.
+  const contacts = []
   return (
     <>
       <Card className='mt-3 p-2'>
-        <h3>Active</h3>
+        {/* FIX: Implement user's status on-join */}
+        <h3 className='d-flex justify-content-between align-content-center'>Active <span className={`fs-2 d-flex justify-content-center text-${true ? "success" : "secondary"}`}>•</span></h3>
         <ListGroup>
           {contacts.map(contact => {
             const {id, name, isActive} = contact
