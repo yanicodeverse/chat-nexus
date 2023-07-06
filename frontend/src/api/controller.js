@@ -1,9 +1,10 @@
-import { Contact } from "./model.js"
+import { Contact } from "./model.js";
+import jwt from "jsonwebtoken";
 
-export function createContact(payload) {
-    Contact.create(
-        payload
-    )
+export async function createContact(payload) {
+	const contact = await Contact.create(payload);
+	const token = jwt.sign(JSON.stringify(contact), process.env.JWT_SECRET);
+	return token
 }
 
 export async function getContact() {

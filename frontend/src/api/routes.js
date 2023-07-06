@@ -3,9 +3,14 @@ import express from 'express'
 
 const router = express.Router()
 
-router.post('/contact', (req, res) => {
-    createContact(req.body)
-    res.send(req.body)
+router.post('/contact', async (req, res) => {
+    try{
+        const token = await createContact(req.body)
+        res.setHeader("authorization", `Bearer ${token}`)
+        res.send({message: "User successfully created. Thankyou"})
+    }catch(error){
+        res.status(400).json({message: {errors: [error.message]}})
+    }
 })
 
 router.get('/contact', async (req, res) => {
@@ -27,4 +32,5 @@ router.delete('/contact/:id', async (req, res) => {
     const deletedContact = await deleteContact(req.params.id)
     res.json(deletedContact)
 })
+
 export default router 
