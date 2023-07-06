@@ -18,7 +18,7 @@ router.get('/contact/:id', async (req, res) => {
     res.json(singleContact)
 })
 
-router.put('/contact/:id', async (req, res) => {
+router.patch('/contact/:id', async (req, res) => {
     const updatedContact = await updateContact(req.params.id, req.body)
     res.json(updatedContact)
 })

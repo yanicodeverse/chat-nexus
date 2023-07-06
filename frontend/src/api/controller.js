@@ -17,7 +17,7 @@ export async function getSingleContact(id) {
 }
 
 export async function updateContact(id, body) {
-    const updatedContact = await Contact.replaceOne({ _id: id }, body)
+    const updatedContact = await Contact.updateOne({ _id: id }, body)
     return updatedContact
 }
 
