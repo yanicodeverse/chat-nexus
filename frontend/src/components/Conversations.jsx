@@ -13,7 +13,7 @@ export default function Conversations() {
 					active={conversation.selected}
 					onClick={() => selectedConversationIndex(index)}
 				>
-					{conversation.recipient.map((r) => r.name).join(", ")}
+					{conversation.recipients.map((r) => r.name).join(", ")}
 				</ListGroup.Item>
 			))}
 		</ListGroup>
