@@ -14,18 +14,20 @@ export default function ChatRoom() {
 		setText("");
 	}
 	return (
-		<div className="d-flex flex-column">
+		// FIX: temporary fix for the height.
+		<div className="d-flex flex-column" style={{height: "68vh"}}>
 			<div className="flex-grow-1 overflow-auto">
-				{/* <div className="d-flex flex-column align-items-start justify-content-end px-3">
+				<div className="d-flex flex-column align-items-start justify-content-end px-3">
 					{selectedConversation.messages.map((message, index) => {
 						return (
 							<div key={index} className="">
+								<h1>data</h1>
 								<div>{message?.text}</div>
 								<div>{message?.formMe ? "You" : message?.senderName}</div>
 							</div>
 						);
 					})}
-				</div> */}
+				</div>
 			</div>
 			<Form onSubmit={handleSubmit} className="m-2">
 				<Form.Group>
