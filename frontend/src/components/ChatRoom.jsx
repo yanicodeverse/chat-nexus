@@ -17,7 +17,7 @@ export default function ChatRoom() {
 	function handleSubmit(e) {
 		e.preventDefault();
 		sendMessage(
-			selectedConversation.recipients.map((r) => r.id),
+			selectedConversation?.recipients.map((r) => r.id),
 			text
 		);
 		setText("");
@@ -26,9 +26,9 @@ export default function ChatRoom() {
 		<div className="d-flex flex-column">
 			<div className="flex-grow-1 overflow-auto" style={{ height: "50vh" }}>
 				<div className="d-flex flex-column align-items-start justify-content-end px-3">
-					{selectedConversation.messages.map((message, index) => {
+					{selectedConversation?.messages?.map((message, index) => {
 						const lastMessage =
-							selectedConversation.message.length - 1 === index;
+							selectedConversation.messages.length - 1 === index;
 						return (
 							<div
 								ref={lastMessage ? setRef : null}

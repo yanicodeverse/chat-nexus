@@ -9,7 +9,7 @@ export function useActiveContact() {
 
 export default function ActiveContactProvider({ children }) {
 	const { contacts } = useContact();
-	const activeContacts = contacts.map((contact) => {
+	const activeContacts = contacts?.map((contact) => {
 		return { ...contact, isActive: false };
 	});
 	return (

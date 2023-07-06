@@ -24,6 +24,7 @@ export default function ConversationProvider({ id, children }) {
 
 	function createConversation(recipients) {
 		setConversations((prevConversation) => {
+			if(!prevConversation) prevConversation = []
 			return [...prevConversation, { recipients, messages: [] }];
 		});
 	}
@@ -34,7 +35,7 @@ export default function ConversationProvider({ id, children }) {
 				let madeChange = false;
 				const newMessage = { sender, text };
 				const newConversations = prevConversations.map((conversation) => {
-					if (arrayEquality(conversation.recipient, recipients)) {
+					if (arrayEquality(conversation.recipients, recipients)) {
 						madeChange = true;
 						return {
 							...conversation,
@@ -69,15 +70,16 @@ export default function ConversationProvider({ id, children }) {
 		addMessageToConversation({ recipients, text, sender: id });
 	}
 
-	const formattedConversations = conversations.map((conversation, index) => {
-		const recipients = conversation.recipient.map((recipientID) => {
+	const formattedConversations = conversations?.map((conversation, index) => {
+		console.log(conversation)
+		const recipients = conversation?.recipients.map((recipientID) => {
 			const contact = contacts.find((contact) => {
 				return contact.id === recipientID; // by  this we can get the contact name corresponding recipient id.
 			});
 			const name = (contact && contact.name) || recipientID;
 			return { id: recipientID, name };
 		});
-		const messages = conversation.messages.map(message => {
+		const messages = conversation?.messages.map(message => {
 			const contact = contacts.find(contact => {
 				return contact.id === message.sender
 			})
@@ -90,9 +92,9 @@ export default function ConversationProvider({ id, children }) {
 	});
 
 	const value = {
-		conversations: formattedConversations,
+		conversations: formattedConversations ?? [],
 		createConversation,
-		selectedConversation: formattedConversations[selectedConversationIndex],
+		selectedConversation: formattedConversations ? formattedConversations[selectedConversationIndex] : [],
 		selectedConversationIndex: setSelectedConversationIndex,
 		sendMessage,
 	};

@@ -9,7 +9,7 @@ export default function Conversation() {
 			<Card className="mt-3 p-2">
 				<h3>Active</h3>
 				<ListGroup>
-					{activeContacts.map((contact) => {
+					{activeContacts?.map((contact) => {
 						const { id, name, isActive } = contact;
 						return (
 							<ListGroup.Item

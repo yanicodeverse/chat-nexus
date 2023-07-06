@@ -12,6 +12,7 @@ export default function ContactsProvider({ children }) {
 	
 	function createContact(id, name) {
 		setContacts((prev) => {
+			if(!prev) prev = []
 			return [...prev, { id, name }];
 		});
 	}

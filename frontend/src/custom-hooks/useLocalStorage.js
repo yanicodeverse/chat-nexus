@@ -5,7 +5,7 @@ function useLocalStorage(key, initialValue) {
 	const prefixedKey = PREFIX + key;
 	const [value, setValue] = useState(() => {
 		const jsonValue = localStorage.getItem(prefixedKey);
-		if (jsonValue != null) {
+		if (jsonValue != "undefined") {
 			return JSON.parse(jsonValue);
 		}
 		if (typeof initialValue == "function") {

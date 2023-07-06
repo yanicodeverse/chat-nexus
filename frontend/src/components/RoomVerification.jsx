@@ -22,10 +22,10 @@ const RoomVerification = ({ setID, id }) => {
 					<Form.Label>Enter your id</Form.Label>
 					<Form.Control type="text" ref={idRef}/>
 				</Form.Group>
-				<Button type="submit" style={{ marginRight: "10px" }} disabled={id !== undefined} >
+				<Button type="submit" style={{ marginRight: "10px" }}  >
 					Join
 				</Button>
-				<Button variant="secondary" onClick={createNewID} disabled={id !== undefined} style={{ marginRight: "10px" }}>
+				<Button variant="secondary" onClick={createNewID} style={{ marginRight: "10px" }}>
 					Create a new ID
 				</Button>
 				<Button variant="danger" onClick={() => localStorage.removeItem("chat-app-id")}>Close chat</Button>
