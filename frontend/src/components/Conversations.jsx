@@ -6,16 +6,16 @@ export default function Conversations() {
 	const { conversations, selectedConversationIndex } = useConversation();
 	return (
 		<ListGroup variant="flush">
-			{conversations.map((conversation, index) => (
+			{conversations.length ? conversations.map((conversation, index) => (
 				<ListGroup.Item
 					key={index}
 					action
 					active={conversation.selected}
 					onClick={() => selectedConversationIndex(index)}
 				>
-					{conversation.recipient.map((r) => r.name).join(", ")}
+					{conversation.recipients.map((r) => r.name).join(", ")}
 				</ListGroup.Item>
-			))}
+			)) : <p className="text-muted p-2">Start chatting with your friends by creating a conversation.</p>}
 		</ListGroup>
 	);
 }

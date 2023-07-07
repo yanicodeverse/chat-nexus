@@ -43,7 +43,7 @@ const RoomSetting = ({ id }) => {
 						<Contact />
 					</Tab.Pane>
 					<Tab.Pane eventKey={CHAT_ROOM_KEY}>
-						<ChatRoom />
+						{id ? <ChatRoom /> : <p className="p-2 text-muted">To activate the chat room, please create a new ID!</p>}
 					</Tab.Pane>
 					<Tab.Pane eventKey={CONVERSATION_KEY}>
 						<Conversations />

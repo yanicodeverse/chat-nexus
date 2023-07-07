@@ -6,20 +6,23 @@ import Conversation from "./components/Conversation.jsx";
 import ContactsProvider from "./components/context/ContactsProvider.jsx";
 import ConversationProvider from "./components/context/ConversationProvider.jsx";
 import SocketProvider from "./components/context/SocketProvider.jsx";
+import ActiveContactProvider from "./components/context/ActiveContactProvider.jsx";
 function App() {
 	const [id, setID] = useLocalStorage("id");
 
 	return (
-		<SocketProvider>
+		<SocketProvider id={id}>
 			<ContactsProvider>
-				<ConversationProvider>
+				<ConversationProvider id={id}>
 					<Container className="d-flex gap-4 p-3">
-						<div className="flex-grow-1 flex-shrink-0">
+						<div className="flex-grow-1">
 							<RoomSetting id={id} />
 						</div>
 						<div>
-							<RoomVerification setID={setID} />
-							<Conversation />
+							<RoomVerification setID={setID} id={id}/>
+							<ActiveContactProvider>
+								<Conversation />
+							</ActiveContactProvider>
 						</div>
 					</Container>
 				</ConversationProvider>

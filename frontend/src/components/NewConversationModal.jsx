@@ -28,7 +28,7 @@ export default function NewConversationModal({ closeModal }) {
 			<Modal.Header closeButton>Add Contact</Modal.Header>
 			<Modal.Body>
 				<Form onSubmit={handleSubmit}>
-					{contacts.map((contact) => {
+					{contacts?.map((contact) => {
 						return (
 							<Form.Group controlId={contact.id} key={contact.id}>
 								<Form.Check
