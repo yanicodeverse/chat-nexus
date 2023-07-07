@@ -79,7 +79,7 @@ export default function ConversationProvider({ id, children }) {
 			const name = (contact && contact.name) || recipientID;
 			return { id: recipientID, name };
 		});
-		const messages = conversation?.messages.map(message => {
+		const messages = conversation?.messages?.map(message => {
 			const contact = contacts.find(contact => {
 				return contact.id === message.sender
 			})

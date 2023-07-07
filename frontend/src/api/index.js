@@ -4,7 +4,7 @@ import path from "path";
 
 dotenv.config({ debug: true, path: path.resolve(process.cwd(), ".env.local") });
 
-const io = new Server(process.env.API_PORT, {cors: {origin: "http://localhost:3000"}});
+const io = new Server(process.env.API_PORT, { cors: { origin: "http://127.0.0.1:3000" } });
 io.on("connection", (socket) => {
 	const id = socket.handshake.query.id;
 	console.log("new connection created: ", id)
