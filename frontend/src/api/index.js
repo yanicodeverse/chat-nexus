@@ -1,6 +1,9 @@
 import { Server } from "socket.io";
 import dotenv from "dotenv";
 import path from "path";
+import mongoose from 'mongoose'
+import express from 'express'
+import router from "./routes.js";
 
 dotenv.config({ debug: true, path: path.resolve(process.cwd(), ".env.local") });
 
@@ -23,3 +26,12 @@ io.on("connection", (socket) => {
 		});
 	});
 });
+
+const app = express()
+mongoose.connect('mongodb://localhost:27017/chat-nexus')
+
+app.use(express.json())
+
+app.use(router)
+
+app.listen(8001)
