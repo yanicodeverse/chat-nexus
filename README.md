@@ -8,9 +8,22 @@ CLIENT_URL=http://localhost
 SERVER_URL=http://localhost
 SERVER_PORT=8000
 ```
-### Start server
+### npm run scripts
 ```bash
 npm i
 npm run server # start api server
 npm run dev # start front-end server
+npm run build # create a deployment ready package
 ```
+## Stack Used
+- mongodb
+- reactJs
+- express
+### Dependency Packages
+- mongoose
+- bcrypt
+- jsonwebtoken
+- socket.io
+- socket.io-client
+- uuid
+- dotenv
