@@ -32,7 +32,7 @@ io.on("connection", (socket) => {
 });
 
 const app = express()
-mongoose.connect('mongodb://localhost:27017/chat-nexus')
+mongoose.connect(process.env.MONGO_URL)
 
 app.use(express.json())
 
