@@ -10,3 +10,8 @@
 [context.production]
   publish = "frontend/"
   command = "npm run server"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Access-Control-Allow-Origin: *
