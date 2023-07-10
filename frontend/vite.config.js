@@ -12,4 +12,16 @@ export default defineConfig({
 		},
 	},
 	plugins: [react()],
+	build: {
+		outDir: 'dist',
+		assetsDir: '',
+		minify: 'terser',
+		sourcemap: false,
+		emptyOutDir: true,
+		rollupOptions: {
+			input: {
+				main: './index.html',
+			},
+		},
+	}
 });

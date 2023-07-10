@@ -25,6 +25,10 @@ io.on("connection", (socket) => {
 			});
 		});
 	});
+	socket.on("end", () => {
+		socket.disconnect()
+		console.log("connection closed");
+	})
 });
 
 const app = express()

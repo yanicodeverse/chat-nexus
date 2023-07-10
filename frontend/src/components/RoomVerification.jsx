@@ -1,9 +1,11 @@
 import { useRef, useState } from "react";
 import { v4 } from "uuid";
 import { Form, Button, Toast, ToastContainer } from "react-bootstrap";
+import { useSocket } from "./context/SocketProvider";
 const RoomVerification = ({ setID, id }) => {
 	const idRef = useRef();
 	const [toastShow, setToastShow] = useState(false);
+	const socket = useSocket()
 
 	function handleSubmit(e) {
 		e.preventDefault();
@@ -28,7 +30,11 @@ const RoomVerification = ({ setID, id }) => {
 				<Button variant="secondary" onClick={createNewID} style={{ marginRight: "10px" }}>
 					Create a new ID
 				</Button>
-				<Button variant="danger" onClick={() => localStorage.removeItem("chat-app-id")}>Close chat</Button>
+				<Button variant="danger" onClick={() => {
+					socket?.emit('end', () => {
+						console.log("connection closed")
+					})
+				}}>Close chat</Button>
 			</Form>
 			<ToastContainer
 				position="top-start"
