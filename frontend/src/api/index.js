@@ -7,7 +7,7 @@ import router from "./routes.js";
 
 dotenv.config();
 
-const io = new Server(process.env.API_PORT, { cors: { origin: "https://chat-nexus.vercel.app/" } });
+const io = new Server(process.env.API_PORT, { cors: { origin: "*" } });
 io.on("connection", (socket) => {
 	const id = socket.handshake.query.id;
 	console.log("new connection created: ", id)

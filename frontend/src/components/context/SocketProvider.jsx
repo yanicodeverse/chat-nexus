@@ -11,7 +11,7 @@ export default function SocketProvider({ id, children }) {
 	const [socket, setSocket] = useState(null);
 
 	useEffect(() => {
-		const newSocket = io("http://localhost:8000", { query: { id } });
+		const newSocket = io("https://64abd37ace8f653ab0a28392--chat-nexus-v1.netlify.app/", { query: { id } });
 		setSocket(newSocket);
 		return () => newSocket.close();
 	}, [id]);
