@@ -1,13 +1,13 @@
 import { Server } from "socket.io";
 import dotenv from "dotenv";
-import path from "path";
+// import path from "path";
 import mongoose from 'mongoose'
 import express from 'express'
 import router from "./routes.js";
 
-dotenv.config({ debug: true, path: path.resolve(process.cwd(), ".env.local") });
+dotenv.config();
 
-const io = new Server(process.env.API_PORT, { cors: { origin: "http://127.0.0.1:3000" } });
+const io = new Server(process.env.API_PORT, { cors: { origin: "https://chat-nexus.vercel.app/" } });
 io.on("connection", (socket) => {
 	const id = socket.handshake.query.id;
 	console.log("new connection created: ", id)
