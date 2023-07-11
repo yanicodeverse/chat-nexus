@@ -13,7 +13,7 @@ export default function SocketProvider({ id, children }) {
 	useEffect(() => {
 		new Promise((resolve, reject) => {
 			setTimeout(() => {
-				const newSocket = io("http://localhost:8000", { query: { id } });
+				const newSocket = io("https://chat-nexus-api.onrender.com", { query: { id } });
 				if (newSocket.connected){
 					return resolve(newSocket)
 				}else{

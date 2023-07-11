@@ -1,13 +1,13 @@
 import { Server } from "socket.io";
 import dotenv from "dotenv";
-import path from "path";
+// import path from "path";
 import mongoose from 'mongoose'
 import express from 'express'
 import router from "./routes.js";
 
-dotenv.config({ debug: true, path: path.resolve(process.cwd(), ".env.local") });
+dotenv.config();
 
-const io = new Server(process.env.API_PORT, { cors: { origin: "http://127.0.0.1:3000" } });
+const io = new Server(process.env.API_PORT, { cors: { origin: "https://chat-nexus.vercel.app" } });
 io.on("connection", (socket) => {
 	const id = socket.handshake.query.id;
 	console.log("new connection created: ", id)
@@ -25,10 +25,14 @@ io.on("connection", (socket) => {
 			});
 		});
 	});
+	socket.on("end", () => {
+		socket.disconnect()
+		console.log("connection closed");
+	})
 });
 
 const app = express()
-mongoose.connect('mongodb://localhost:27017/chat-nexus')
+mongoose.connect(process.env.MONGO_URL)
 
 app.use(express.json())
 
