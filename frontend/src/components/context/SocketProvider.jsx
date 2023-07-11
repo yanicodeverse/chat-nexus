@@ -11,9 +11,22 @@ export default function SocketProvider({ id, children }) {
 	const [socket, setSocket] = useState(null);
 
 	useEffect(() => {
-		const newSocket = io("https://chat-nexus-api.onrender.com", { query: { id } });
-		setSocket(newSocket);
-		return () => newSocket.close();
+		new Promise((resolve, reject) => {
+			setTimeout(() => {
+				const newSocket = io("https://chat-nexus-api.onrender.com", { query: { id } });
+				if (newSocket.connected){
+					return resolve(newSocket)
+				}else{
+					newSocket.disconnect()
+					return reject(newSocket)
+				}
+			}, 3000);
+		}).then(res => {
+			setSocket(res);
+		}).catch(error => {
+			console.log(error)
+		})
+		return () => socket?.close();
 	}, [id]);
 	return (
 		<SocketContext.Provider value={socket}>{children}</SocketContext.Provider>
