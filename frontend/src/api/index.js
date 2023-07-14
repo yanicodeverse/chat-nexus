@@ -1,12 +1,11 @@
 import { Server } from "socket.io";
 import dotenv from "dotenv";
-// import path from "path";
 import mongoose from 'mongoose'
 import express from 'express'
 import router from "./routes.js";
 
 dotenv.config();
-
+/* global  process */
 const io = new Server(process.env.API_PORT, { cors: { origin: "https://chat-nexus.vercel.app" } });
 io.on("connection", (socket) => {
 	const id = socket.handshake.query.id;

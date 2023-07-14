@@ -1,34 +1,40 @@
 import React, { useContext, createContext, useEffect, useState } from "react";
+import proptypes from "prop-types";
 import io from "socket.io-client";
 
 const SocketContext = createContext();
 
+SocketProvider.propTypes = {
+  id: proptypes.isRequired,
+  children: proptypes.instanceOf(React.Children),
+};
+
 export function useSocket() {
-	return useContext(SocketContext);
+  return useContext(SocketContext);
 }
 
 export default function SocketProvider({ id, children }) {
-	const [socket, setSocket] = useState(null);
+  const [socket, setSocket] = useState(null);
 
-	useEffect(() => {
-		new Promise((resolve, reject) => {
-			setTimeout(() => {
+  useEffect(() => {
+    new Promise((resolve, reject) => {
+      setTimeout(() => {
 				const newSocket = io("https://chat-nexus-api.onrender.com", { query: { id } });
 				if (newSocket.connected){
 					return resolve(newSocket)
 				}else{
 					newSocket.disconnect()
 					return reject(newSocket)
-				}
-			}, 3000);
+        }
+      }, 3000);
 		}).then(res => {
-			setSocket(res);
+        setSocket(res);
 		}).catch(error => {
 			console.log(error)
-		})
-		return () => socket?.close();
-	}, [id]);
-	return (
-		<SocketContext.Provider value={socket}>{children}</SocketContext.Provider>
-	);
+      })
+    return () => socket?.close();
+  }, [id]);
+  return (
+    <SocketContext.Provider value={socket}>{children}</SocketContext.Provider>
+  );
 }
