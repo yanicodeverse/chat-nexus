@@ -5,8 +5,8 @@ import io from "socket.io-client";
 const SocketContext = createContext();
 
 SocketProvider.propTypes = {
-  id: proptypes.isRequired,
-  children: proptypes.instanceOf(React.Children),
+  id: proptypes.string.isRequired,
+  children: proptypes.instanceOf(React.Component)
 };
 
 export function useSocket() {
@@ -15,11 +15,10 @@ export function useSocket() {
 
 export default function SocketProvider({ id, children }) {
   const [socket, setSocket] = useState(null);
-
   useEffect(() => {
     new Promise((resolve, reject) => {
       setTimeout(() => {
-				const newSocket = io("https://chat-nexus-api.onrender.com", { query: { id } });
+				const newSocket = io(import.meta.env.VITE_SOCKET_API_URI, { query: { id } });
 				if (newSocket.connected){
 					return resolve(newSocket)
 				}else{
