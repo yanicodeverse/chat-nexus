@@ -5,8 +5,8 @@ import io from "socket.io-client";
 const SocketContext = createContext();
 
 SocketProvider.propTypes = {
-  id: proptypes.string.isRequired,
-  children: proptypes.instanceOf(React.Component)
+  id: proptypes.string,
+  children: proptypes.any,
 };
 
 export function useSocket() {
@@ -16,21 +16,10 @@ export function useSocket() {
 export default function SocketProvider({ id, children }) {
   const [socket, setSocket] = useState(null);
   useEffect(() => {
-    new Promise((resolve, reject) => {
-      setTimeout(() => {
-				const newSocket = io(import.meta.env.VITE_SOCKET_API_URI, { query: { id } });
-				if (newSocket.connected){
-					return resolve(newSocket)
-				}else{
-					newSocket.disconnect()
-					return reject(newSocket)
-        }
-      }, 3000);
-		}).then(res => {
-        setSocket(res);
-		}).catch(error => {
-			console.log(error)
-      })
+    const newSocket = io(import.meta.env.VITE_SOCKET_API_URI, {
+      query: { id },
+    });
+    setSocket(newSocket);
     return () => socket?.close();
   }, [id]);
   return (

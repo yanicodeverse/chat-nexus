@@ -1,12 +1,7 @@
 import { Server } from "socket.io";
 import dotenv from "dotenv";
-import mongoose from "mongoose";
-import express from "express";
-import router from "./routes.js";
 
-dotenv.config({ path: `.env.${process.env.NODE_ENV}` });
-
-console.log("Environment", process.env.NODE_ENV);
+dotenv.config();
 
 /* global  process */
 const io = new Server(process.env.API_PORT, {
@@ -19,6 +14,8 @@ io.on("connection", (socket) => {
   const id = socket.handshake.query.id;
   socket.join(id);
 
+  console.log(`new connection ${id}`)
+  
   socket.on("connect", () => console.log(`A client is connected ${id}`));
 
   socket.on("send-message", ({ recipients, text }) => {
@@ -41,12 +38,3 @@ io.on("connection", (socket) => {
     console.log("connection closed");
   });
 });
-
-const app = express();
-mongoose.connect(process.env.MONGO_URI);
-
-app.use(express.json());
-
-app.use(router);
-
-app.listen(8001);
